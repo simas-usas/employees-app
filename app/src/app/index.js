@@ -14,10 +14,10 @@ const store = configureStore();
 render(
     (
         <Provider store={store}>
-            <React.Fragment>
+            <>
                 <CssBaseline />
                 <App />
-            </React.Fragment>
+            </>
         </Provider>
     ), document.getElementById('root'),
 );

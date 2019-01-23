@@ -6,7 +6,7 @@ html {
     display: flex;
     flex-direction: column;
 
-    .closeButton {
+    .close-button {
         position: relative;
         float: right;
         margin-right: 3rem;
@@ -30,7 +30,7 @@ html {
             text-align: left;
             
 
-            .nameText {
+            .name-text {
                 font-size: 1.75rem;
                 font-weight: 500;
             }
@@ -38,13 +38,13 @@ html {
             .title {
                 display: flex;
 
-                .titleText {
+                .title-text {
                     font-size: 1rem;
                     font-weight: 400;
                     color: #7f7f7f;
                 }
     
-                .editButton {
+                .edit-button {
                     height: 2rem;
                     width: 2rem;
                     margin-top: -0.25rem;
@@ -62,14 +62,14 @@ html {
         justify-content: center;
         align-items: center;
         
-        .textField {
+        .text-field {
             width: 80%;
         } 
     }
 
 }
 
-.modalTitle {
+.modal-title {
     display: flex;
     flex-direction: column;
     left: 50%;
@@ -81,7 +81,7 @@ html {
     transform: translate(-50%, -50%);
     width: 20rem;
 
-    .modalText {
+    .modal-text {
         margin: 0.5rem 0;
     }
 }

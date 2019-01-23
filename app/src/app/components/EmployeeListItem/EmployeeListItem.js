@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Avatar, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 
-import selectTabs from 'selectors/tabs';
-import { addTab } from 'actions/tabs';
 import './employeeListItem.scss';
 
 class EmployeeListItem extends React.Component {
@@ -12,7 +9,7 @@ class EmployeeListItem extends React.Component {
         return (
             <ListItem 
                 button
-                onClick={() => tabs.length < 2 && this.props.dispatch(addTab(id))}
+                onClick={() => tabs.length < 2 && this.props.addTab(id)}
             >
                 <ListItemAvatar>
                     <Avatar 
@@ -30,10 +27,4 @@ class EmployeeListItem extends React.Component {
     }
 } 
 
-const mapStateToProps = (state) => {
-    return {
-        tabs: selectTabs(state.employees, state.tabs)
-    };
-};
-
-export default connect(mapStateToProps)(EmployeeListItem);
+export default EmployeeListItem;

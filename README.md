@@ -8,6 +8,6 @@ To set up the project, open up a terminal in the ```app``` folder. First of all,
 
 Once installed, type in this command:
 
-```npm run start```
+```npm start```
 
 Then open [http://localhost:3000/](http://localhost:3000/) to see your app.

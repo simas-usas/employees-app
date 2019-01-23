@@ -1,13 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { Avatar, IconButton, Modal, Tabs, Tab, TextField, Typography, Button } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@material-ui/icons/Edit';
-
-import selectTabs from 'selectors/tabs';
-import { removeTab } from 'actions/tabs';
-import { editTitle } from 'actions/employees';
 
 import './employeeDetails.scss';
 
@@ -19,12 +14,12 @@ class EmployeeDetails extends React.Component {
     };
 
     handleCloseTab = (id) => {
-        this.props.dispatch(removeTab(id));
+        this.props.removeTab(id);
         this.setState({ value: 0 });
     };
 
     handleTitleEdit = (id) => {
-        this.props.dispatch(editTitle(id, this.state.editedTitle));
+        this.props.editTitle(id, this.state.editedTitle);
         this.setState({ editedTitle: '' });
         this.setState({ modalOpen: false });
     };
@@ -46,7 +41,7 @@ class EmployeeDetails extends React.Component {
                         <div key={employee.id} className="details">
                             <div>
                                 <IconButton
-                                    className="closeButton"
+                                    className="close-button"
                                     onClick={() => this.handleCloseTab(employee.id)}
                                 >
                                     <CloseIcon />
@@ -63,11 +58,11 @@ class EmployeeDetails extends React.Component {
                                 </div>
                                 <div className="identity">
                                     <div>                                    
-                                        <Typography className="nameText">{`${employee.firstName} ${employee.lastName}`}</Typography>
+                                        <Typography className="name-text">{`${employee.firstName} ${employee.lastName}`}</Typography>
                                     </div>
                                     <div className="title">
-                                        <Typography className="titleText">{employee.title}</Typography>
-                                        <IconButton className="editButton" onClick={() => this.setState({ modalOpen: true })}>
+                                        <Typography className="title-text">{employee.title}</Typography>
+                                        <IconButton className="edit-button" onClick={() => this.setState({ modalOpen: true, editedTitle: employee.title })}>
                                             <EditIcon />
                                         </IconButton>
                                     </div>
@@ -78,17 +73,14 @@ class EmployeeDetails extends React.Component {
                                     open={this.state.modalOpen}
                                     onClose={() => this.setState({ modalOpen: false })}
                                 >
-                                    <div className="modalTitle">
+                                    <div className="modal-title">
                                         <TextField
-                                            className="modalText"
+                                            className="modal-text"
                                             id="title"
                                             label="Title"
                                             defaultValue={employee.title}
                                             margin="normal"
                                             onChange={(event) => this.setState({ editedTitle: event.target.value })}
-                                            InputProps={{
-                                                //disableUnderline: true
-                                            }}
                                         />
                                         <Button variant="contained" color="primary" onClick={() => this.handleTitleEdit(employee.id)}>Update</Button>
                                     </div>
@@ -97,47 +89,43 @@ class EmployeeDetails extends React.Component {
 
                             <div className="contacts">
                                 <TextField
-                                    className="textField"
+                                    className="text-field"
                                     id="call-office"
                                     label="Call Office"
                                     value={employee.officePhone}
                                     margin="normal"
                                     InputProps={{
                                         readOnly: true,
-                                        //disableUnderline: true
                                     }}
                                 />
                                 <TextField
-                                    className="textField"
+                                    className="text-field"
                                     id="call-mobile"
                                     label="Call Mobile"
                                     value={employee.mobilePhone}
                                     margin="normal"
                                     InputProps={{
                                         readOnly: true,
-                                        //disableUnderline: true
                                     }}
                                 />
                                 <TextField
-                                    className="textField"
+                                    className="text-field"
                                     id="sms"
                                     label="SMS"
                                     value={employee.mobilePhone}
                                     margin="normal"
                                     InputProps={{
                                         readOnly: true,
-                                        //disableUnderline: true
                                     }}
                                 />
                                 <TextField
-                                    className="textField"
+                                    className="text-field"
                                     id="email"
                                     label="Email"
                                     value={employee.email}
                                     margin="normal"
                                     InputProps={{
                                         readOnly: true,
-                                        //disableUnderline: true
                                     }}
                                 />
                             </div>
@@ -151,10 +139,4 @@ class EmployeeDetails extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        employees: selectTabs(state.employees, state.tabs)
-    };
-};
-
-export default connect(mapStateToProps)(EmployeeDetails);
+export default EmployeeDetails;

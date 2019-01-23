@@ -11,13 +11,13 @@ const Header = (props) => (
                 {props.drawer &&
                     <IconButton
                         color="inherit"
-                        className="menuButton"
+                        className="menu-button"
                         onClick={props.handleDrawerToggle}
                     >
                         <MenuIcon />
                     </IconButton>
                 }
-                <div className="textField">{props.title}</div>
+                <div className="text-field">{props.title}</div>
             </Toolbar>
         </AppBar>
     </div>

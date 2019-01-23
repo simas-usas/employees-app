@@ -1,8 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { bindActionCreators } from 'redux';
+import { setSearchText } from 'actions/filters';
+import { addTab, removeTab } from 'actions/tabs';
+import { editTitle } from 'actions/employees';
+
+import selectEmployees from 'selectors/employees';
+import selectTabs from 'selectors/tabs';
+
 import { createMuiTheme, MuiThemeProvider, Hidden, Drawer } from '@material-ui/core';
 
-import HomePage from 'containers/HomePage/HomePage';
-import EmployeePage from 'containers/EmployeePage/EmployeePage';
+import HomePage from 'components/HomePage/HomePage';
+import EmployeePage from 'components/EmployeePage/EmployeePage';
 
 import './app.scss';
 
@@ -31,14 +41,16 @@ const theme = createMuiTheme({
 
 class App extends React.Component {
     state = {
-        mobileOpen: false
+        temporaryDrawerOpen: false
     };
 
     handleDrawerToggle = () => {
-        this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+        this.setState(prevState => ({ temporaryDrawerOpen: !prevState.temporaryDrawerOpen }));
     };
 
     render() {
+        const { employees, tabs, setSearchText, addTab, removeTab, editTitle } = this.props;
+
         return (
             <MuiThemeProvider theme={theme}>
                 <div className="app">
@@ -47,11 +59,16 @@ class App extends React.Component {
                             <Drawer
                                 variant="temporary"
                                 anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                                open={this.state.mobileOpen}
+                                open={this.state.temporaryDrawerOpen}
                                 onClose={this.handleDrawerToggle}
                             >
                                 <div className="drawer">
-                                    <HomePage/>
+                                    <HomePage 
+                                        employees
+                                        tabs
+                                        setSearchText
+                                        addTab
+                                    />
                                 </div>
                             </Drawer>
                         </Hidden>
@@ -61,14 +78,24 @@ class App extends React.Component {
                                 open
                             >
                                 <div className="drawer">
-                                    <HomePage/>
+                                    <HomePage 
+                                        employees
+                                        tabs
+                                        setSearchText
+                                        addTab
+                                    />
                                 </div>
                             </Drawer>
                         </Hidden>
                     </nav>
 
                     <div className="employee">
-                        <EmployeePage handleDrawerToggle={this.handleDrawerToggle}/>
+                        <EmployeePage 
+                            tabs
+                            editTitle
+                            removeTab
+                            handleDrawerToggle={this.handleDrawerToggle}
+                        />
                     </div>
                 </div>
             </MuiThemeProvider>
@@ -76,4 +103,15 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+        employees: selectEmployees(state.employees, state.filters),
+        tabs: selectTabs(state.employees, state.tabs)
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        setSearchText, addTab, removeTab, editTitle
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
