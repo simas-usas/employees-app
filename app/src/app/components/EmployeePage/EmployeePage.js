@@ -8,7 +8,8 @@ import './employeePage.scss';
 const EmployeePage = (props) => (
     <>
         <Header 
-            drawer={true} title="Employee" 
+            drawer={true}
+            title="Employee"
             handleDrawerToggle={props.handleDrawerToggle}
         />
         <EmployeeDetails 
@@ -18,6 +19,5 @@ const EmployeePage = (props) => (
         />
     </>
 );
-
 
 export default EmployeePage;

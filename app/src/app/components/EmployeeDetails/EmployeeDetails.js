@@ -129,11 +129,9 @@ class EmployeeDetails extends React.Component {
                                     }}
                                 />
                             </div>
-                            
                         </div>
                 ))}
-
-
+                
             </div>
         );
     }

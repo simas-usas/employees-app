@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
-import { setSearchText } from 'actions/filters';
-import { addTab, removeTab } from 'actions/tabs';
-import { editTitle } from 'actions/employees';
 
 import selectEmployees from 'selectors/employees';
 import selectTabs from 'selectors/tabs';
+
+import { setSearchText } from 'actions/filters';
+import { addTab, removeTab } from 'actions/tabs';
+import { editTitle } from 'actions/employees';
 
 import { createMuiTheme, MuiThemeProvider, Hidden, Drawer } from '@material-ui/core';
 
@@ -64,10 +65,10 @@ class App extends React.Component {
                             >
                                 <div className="drawer">
                                     <HomePage 
-                                        employees
-                                        tabs
-                                        setSearchText
-                                        addTab
+                                        employees={employees}
+                                        tabs={tabs}
+                                        setSearchText={setSearchText}
+                                        addTab={addTab}
                                     />
                                 </div>
                             </Drawer>
@@ -79,10 +80,10 @@ class App extends React.Component {
                             >
                                 <div className="drawer">
                                     <HomePage 
-                                        employees
-                                        tabs
-                                        setSearchText
-                                        addTab
+                                        employees={employees}
+                                        tabs={tabs}
+                                        setSearchText={setSearchText}
+                                        addTab={addTab}
                                     />
                                 </div>
                             </Drawer>
@@ -91,9 +92,9 @@ class App extends React.Component {
 
                     <div className="employee">
                         <EmployeePage 
-                            tabs
-                            editTitle
-                            removeTab
+                            tabs={tabs}
+                            editTitle={editTitle}
+                            removeTab={removeTab}
                             handleDrawerToggle={this.handleDrawerToggle}
                         />
                     </div>
@@ -104,8 +105,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-        employees: selectEmployees(state.employees, state.filters),
-        tabs: selectTabs(state.employees, state.tabs)
+    employees: selectEmployees(state.employees, state.filters),
+    tabs: selectTabs(state.employees, state.tabs)
 });
 
 const mapDispatchToProps = (dispatch) => {
