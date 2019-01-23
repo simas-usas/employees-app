@@ -1,0 +1,87 @@
+html {
+    font-size: 100%;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+
+    .closeButton {
+        position: relative;
+        float: right;
+        margin-right: 3rem;
+    }
+
+    .employee {
+        display: flex;
+        justify-content: center;
+        margin: 1.5rem;
+
+        .avatar {
+            height: 8rem;
+            width: 8rem;
+        }
+
+        .identity {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 1.5rem;
+            text-align: left;
+            
+
+            .nameText {
+                font-size: 1.75rem;
+                font-weight: 500;
+            }
+
+            .title {
+                display: flex;
+
+                .titleText {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: #7f7f7f;
+                }
+    
+                .editButton {
+                    height: 2rem;
+                    width: 2rem;
+                    margin-top: -0.25rem;
+                    margin-left: 0.25rem; 
+                    transform: scale(0.8);
+                }
+            }
+
+        }
+    }
+
+    .contacts {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        .textField {
+            width: 80%;
+        } 
+    }
+
+}
+
+.modalTitle {
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20rem;
+
+    .modalText {
+        margin: 0.5rem 0;
+    }
+}
