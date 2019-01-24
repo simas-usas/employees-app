@@ -4,7 +4,7 @@ export default (employees, tabs) => {
       const idMatch = tabs.includes(employee.id);
       return idMatch;
     })
-    .sort((employee, tab) => {
-      return tabs.indexOf(employee.id) - employees.map((e) => e.id).indexOf(tab.id);
+    .sort((t1, t2) => {
+      return tabs.indexOf(t1.id) - tabs.indexOf(t2.id);
     })
 };
