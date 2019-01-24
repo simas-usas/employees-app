@@ -5,6 +5,6 @@ export default (employees, tabs) => {
       return idMatch;
     })
     .sort((employee, tab) => {
-      return tabs.indexOf(employee) - employees.indexOf(tab);
+      return tabs.indexOf(employee.id) - employees.map((e) => e.id).indexOf(tab.id);
     })
 };

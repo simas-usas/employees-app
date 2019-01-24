@@ -13,6 +13,11 @@ class EmployeeDetails extends React.Component {
         editedTitle: '',
     };
 
+    componentDidUpdate(prevProps) {
+        prevProps.employees.length === 1 && this.props.employees.length === 2 && (this.setState({ value : 1 }));
+        prevProps.employees.length === 2 && this.props.employees.length === 1 && (this.setState({ value : 0 }));
+    }
+
     handleCloseTab = (id) => {
         this.props.removeTab(id);
         this.setState({ value: 0 });
